@@ -23,6 +23,7 @@ void Webclient::readyRead()
 
 void Webclient::on_goButton_clicked()
 {
+    goButton->setAutoFillBackground("color: green");
     m_hostname = input->text();
     unsigned short port = 80;
     m_socket = new QTcpSocket(this);
@@ -34,5 +35,9 @@ void Webclient::on_goButton_clicked()
     m_socket->connectToHost(m_hostname, port); // TCP Connect
     if (!m_socket->waitForConnected(5000)) {
         output->setText("connect failed!");
+        output->setStyleSheet("color:red;");
     }
+    else
+        output->setStyleSheet("color:black;");
+
 }
